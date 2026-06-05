@@ -23,7 +23,10 @@ jobs:
         run: npx serverest &
 
       - name: Aguardar ServeRest Inicializar
-        run: sleep 15
+        run: sleep 5
+
+      - name: Criar Pasta de Relatório
+        run: mkdir -p Reports
 
       - name: Executar testes
         run: |
