@@ -2,10 +2,10 @@
 name: ServeRest Tests
 
 on: 
-    push:
-      branch: [main]
-    pull-request:
-      branch: [main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
