@@ -33,7 +33,7 @@ jobs:
             --reporter-htmlextra-export "Reports/report.html"
 
       - name: Relatório HTML
-        uses: actions/update-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: newman-report
           path: Reports/report.html 
