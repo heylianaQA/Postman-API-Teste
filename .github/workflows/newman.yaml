@@ -1,7 +1,16 @@
 
 name: ServeRest Tests
 
-on: [push, pull_request]
+on: 
+    push:
+      branch: [main]
+    pull-request:
+      branch: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   tests:
@@ -41,3 +50,11 @@ jobs:
         with:
           name: newman-report
           path: Reports/report.html 
+
+      - name: Publicar relatório no Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Reports
+          destination_dir: reports
