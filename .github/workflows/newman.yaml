@@ -8,32 +8,32 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      name: Checkout do repositório
-      uses: actions/checkout@v4
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
 
-      name: Configurar Node
-      uses: actions/setup-node@v4
-      with:
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
           node-version: 22
 
-      name: Instalar dependências
-      run: npm install
+      - name: Instalar dependências
+        run: npm install
 
-      name: Subir ServeRest
-      run: npx serverest &
+      - name: Subir ServeRest
+        run: npx serverest &
 
-      name: Aguardar ServeRest Inicializar
-      run: sleep 15
+      - name: Aguardar ServeRest Inicializar
+        run: sleep 15
 
-      name: Executar testes
-      run: 
-        npx newman run "Collections/ServeRestAPI.postman_collection.json" \
-        -e "Enviroments/ServeRest-localhost.postman_environment.json" \
-        -r htmlextra \
-          --reporter-htmlextra-export "Reports/report.html"
+      - name: Executar testes
+        run: |
+          npx newman run "Collections/ServeRestAPI.postman_collection.json" \
+            -e "Environments/ServeRest-localhost.postman_environment.json" \
+            -r htmlextra \
+            --reporter-htmlextra-export "Reports/report.html"
 
-      name: Relatório HTML
-      uses: actions/update-artifact@v4
-      with:
+      - name: Relatório HTML
+        uses: actions/update-artifact@v4
+        with:
           name: newman-report
           path: Reports/report.html 
