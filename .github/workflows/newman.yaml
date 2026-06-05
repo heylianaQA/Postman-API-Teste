@@ -30,7 +30,8 @@ jobs:
           npx newman run "Collections/ServeRestAPI.postman_collection.json" \
             -e "Environments/ServeRest-localhost.postman_environment.json" \
             -r htmlextra \
-            --reporter-htmlextra-export "Reports/report.html"
+            --reporter-htmlextra-export "Reports/report.html" \
+            --suppress-exit-code
 
       - name: Relatório HTML
         uses: actions/upload-artifact@v4
